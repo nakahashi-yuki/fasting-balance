@@ -1,24 +1,39 @@
-# README
+# テーブル設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## users テーブル
 
-Things you may want to cover:
+| Column             | Type    | Options     |
+| ------------------ | ------- | ----------- |
+| nickname           | string  | null: false |
+| email              | string  | null: false |
+| encrypted_password | string  | null: false |
+| height             | integer | null: false |
+| target_body_weight | integer | null: false |
+| motion_id          | integer | null: false |
+| week_motion_id     | integer |             |
 
-* Ruby version
+### Association
+- has_many :personals
+- has_many :memos
 
-* System dependencies
+## personals テーブル
 
-* Configuration
+| Column      | Type    | Options     |
+| ----------- | ------- | ----------- |
+| body_weight | integer | null: false |
 
-* Database creation
+### Association
+- has_many :memos
+- belongs_to :user
 
-* Database initialization
+## memos テーブル
 
 * How to run the test suite
+| Column   | Type    | Options     |
+| -------- | ------- | ----------- |
+| title_id | integer | null: false |
+| memo     | text    | null: false |
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### Association
+- belongs_to :personal
+- belongs_to :user
